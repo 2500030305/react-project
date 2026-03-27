@@ -6,13 +6,11 @@ export default function Overview() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [lastUpdated, setLastUpdated] = useState(null);
 
   const load = async () => {
     try {
       const res = await getChartData();
       setData(res.data);
-      setLastUpdated(new Date().toLocaleTimeString());
       setError("");
     } catch (err) {
       setError("Failed to load data");
@@ -22,39 +20,22 @@ export default function Overview() {
   };
 
   useEffect(() => {
-    let isMounted = true;
-
-    const safeLoad = async () => {
-      if (!isMounted) return;
-      await load();
-    };
-
-    safeLoad();
-
-    const interval = setInterval(safeLoad, 2000);
-
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
+    load();
+    const interval = setInterval(load, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <div style={styles.container}>
-      <h2 style={{ marginBottom: 10 }}>Overview</h2>
+      <h2 style={styles.title}>Overview</h2>
 
-      {/* Status */}
-      {loading && <p>Loading chart...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {loading && <p>Loading...</p>}
+      {error && <p style={styles.error}>{error}</p>}
 
-      {/* Chart */}
-      {!loading && !error && <Chart data={data} />}
-
-      {/* Footer info */}
-      {lastUpdated && (
-        <p style={styles.footer}>
-          Last updated: {lastUpdated}
-        </p>
+      {!loading && !error && (
+        <div style={styles.chartBox}>
+          <Chart data={data} />
+        </div>
       )}
     </div>
   );
@@ -62,14 +43,23 @@ export default function Overview() {
 
 const styles = {
   container: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
     background: "white",
-    padding: "20px",
+    padding: "15px",
     borderRadius: "10px",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    overflow: "hidden",
   },
-  footer: {
-    marginTop: "10px",
-    fontSize: "12px",
-    color: "#6b7280",
+  title: {
+    marginBottom: "10px",
+  },
+  error: {
+    color: "red",
+  },
+  chartBox: {
+    flex: 1,
+    maxHeight: "280px",
+    overflow: "hidden",
   },
 };
