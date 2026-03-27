@@ -15,9 +15,9 @@ export default function UserDashboard() {
 
   return (
     <div style={styles.container}>
-
+      
       <div style={styles.sidebar}>
-        <h2 style={{ marginBottom: 20 }}>Dashboard</h2>
+        <h2 style={styles.logo}>Dashboard</h2>
 
         <button
           style={active === "overview" ? styles.activeBtn : styles.button}
@@ -44,12 +44,14 @@ export default function UserDashboard() {
           Logout
         </button>
       </div>
+
       <div style={styles.main}>
         <div style={styles.header}>
           <h3 style={{ margin: 0 }}>
             {active.charAt(0).toUpperCase() + active.slice(1)}
           </h3>
         </div>
+
         <div style={styles.content}>
           {active === "overview" && <Overview />}
           {active === "trade" && <Trade />}
@@ -64,17 +66,21 @@ const styles = {
   container: {
     display: "flex",
     height: "100vh",
-    background: "#f1f5f9",
+    background: "#0b1120",
+    color: "white",
   },
 
   sidebar: {
     width: "220px",
-    background: "#0f172a",
-    color: "white",
+    background: "#020617",
     padding: "20px",
     display: "flex",
     flexDirection: "column",
     gap: "12px",
+  },
+
+  logo: {
+    marginBottom: "20px",
   },
 
   button: {
@@ -112,17 +118,18 @@ const styles = {
     flex: 1,
     display: "flex",
     flexDirection: "column",
+    background: "#0b1120",
   },
 
   header: {
-    background: "white",
     padding: "15px 20px",
-    borderBottom: "1px solid #e5e7eb",
+    borderBottom: "1px solid rgba(255,255,255,0.1)",
+    background: "#0f172a",
   },
 
   content: {
     flex: 1,
-    padding: "20px",
     overflowY: "auto",
+    padding: "20px",
   },
 };
