@@ -1,29 +1,21 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-
-import AdminDashboard from "./admin/AdminDashboard";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import UserDashboard from "./user/UserDashboard";
-import AdminLogin from "./pages/AdminLogin";
 import UserLogin from "./pages/UserLogin";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 
 function Layout() {
   const location = useLocation();
-
-  const hideNavbar =
-    location.pathname.includes("dashboard");
+  const hideNavbar = location.pathname === "/user-dashboard";
 
   return (
     <>
       {!hideNavbar && <Navbar />}
-
       <Routes>
-        <Route path="/" element={<UserLogin />} />
-        <Route path="/user-login" element={<UserLogin />} />
-        <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Navigate to="/register" />} />
 
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/user-login" element={<UserLogin />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
       </Routes>
     </>
