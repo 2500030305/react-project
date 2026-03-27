@@ -1,0 +1,64 @@
+/* Page background gradient */
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: linear-gradient(120deg, #6b2cff, #ff7ac3);
+}
+
+/* Sidebar container */
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: rgba(20, 20, 35, 0.95);
+  backdrop-filter: blur(12px);
+  color: white;
+  padding: 25px 18px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-radius: 0 18px 18px 0;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+/* Logo */
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+}
+
+/* Navigation list */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Items */
+.sidebar li {
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 15px;
+}
+
+/* Hover glow */
+.sidebar li:hover {
+  background: linear-gradient(90deg, #ff4ecb, #7c4dff);
+  box-shadow: 0 0 12px rgba(255, 78, 203, 0.6);
+  transform: translateX(5px);
+}
+
+/* Active state (optional) */
+.sidebar li.active {
+  background: linear-gradient(90deg, #ff4ecb, #7c4dff);
+}
+
+/* Main content spacing */
+.main-content {
+  margin-left: 260px;
+  padding: 25px;
+  color: white;
+}
