@@ -24,10 +24,10 @@ export default function UserLogin() {
     }
 
     if (user.email === form.email && user.password === form.password) {
-      alert("Login Successful ✅");
+      alert("Login Successful ");
       navigate("/user-dashboard");
     } else {
-      alert("Invalid Credentials ❌");
+      alert("Invalid Credentials ");
     }
   };
 
