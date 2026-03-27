@@ -16,24 +16,25 @@ export default function Overview() {
     return () => clearInterval(interval);
   }, []);
 
+  const buySellData = [
+    { name: "Buy", value: 6 },
+    { name: "Sell", value: 1 },
+  ];
+
   return (
     <div style={styles.wrapper}>
-      <h2 style={styles.title}>Overview</h2>
-
       <div style={styles.grid}>
+        
         <div style={styles.card}>
           <h3 style={styles.cardTitle}>Portfolio Value</h3>
-          <div style={styles.chartBox}>
-            <Chart data={data} />
-          </div>
+          <Chart data={data} type="line" />
         </div>
 
         <div style={styles.card}>
           <h3 style={styles.cardTitle}>Buy vs Sell</h3>
-          <div style={styles.chartBox}>
-            <Chart data={data} />
-          </div>
+          <Chart data={buySellData} type="bar" />
         </div>
+
       </div>
     </div>
   );
@@ -42,16 +43,7 @@ export default function Overview() {
 const styles = {
   wrapper: {
     height: "100%",
-    padding: "20px",
-    background: "#0b1120",
     color: "white",
-    overflowY: "auto",
-  },
-
-  title: {
-    marginBottom: "20px",
-    fontSize: "24px",
-    fontWeight: "600",
   },
 
   grid: {
@@ -61,23 +53,15 @@ const styles = {
   },
 
   card: {
-    background: "rgba(255, 255, 255, 0.05)",
-    backdropFilter: "blur(20px)",
+    background: "#0f172a",
     borderRadius: "16px",
     padding: "20px",
-    boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
-    display: "flex",
-    flexDirection: "column",
+    boxShadow: "0 8px 25px rgba(0,0,0,0.5)",
   },
 
   cardTitle: {
-    marginBottom: "10px",
+    marginBottom: "15px",
     fontSize: "18px",
-    fontWeight: "500",
     color: "#cbd5f5",
-  },
-
-  chartBox: {
-    height: "250px",
   },
 };
