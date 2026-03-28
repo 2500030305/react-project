@@ -31,6 +31,10 @@ export default function Navbar() {
         <NavLink to="/user-login" style={linkStyle}>
           User Login
         </NavLink>
+
+         <NavLink to="*" style={linkStyle}>
+          Not Found
+        </NavLink>
       </div>
     </div>
   );
