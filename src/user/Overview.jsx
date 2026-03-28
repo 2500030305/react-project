@@ -7,7 +7,20 @@ export default function Overview() {
 
   const load = async () => {
     const res = await getChartData();
-    setData(res.data);
+
+    const cleaned = res.data
+      .filter(item => item.value !== undefined && item.value !== null)
+      .map(item => ({
+        time: item.time,
+        value: Number(item.value),
+      }))
+      .sort(
+        (a, b) =>
+          new Date(`1970/01/01 ${a.time}`) -
+          new Date(`1970/01/01 ${b.time}`)
+      );
+
+    setData(cleaned);
   };
 
   useEffect(() => {
@@ -24,7 +37,6 @@ export default function Overview() {
   return (
     <div style={styles.wrapper}>
       <div style={styles.grid}>
-        
         <div style={styles.card}>
           <h3 style={styles.cardTitle}>Portfolio Value</h3>
           <Chart data={data} type="line" />
@@ -34,7 +46,6 @@ export default function Overview() {
           <h3 style={styles.cardTitle}>Buy vs Sell</h3>
           <Chart data={buySellData} type="bar" />
         </div>
-
       </div>
     </div>
   );
