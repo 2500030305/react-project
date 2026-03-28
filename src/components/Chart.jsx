@@ -7,6 +7,7 @@ import {
   BarChart,
   Bar,
   ResponsiveContainer,
+  CartesianGrid,
 } from "recharts";
 
 export default function Chart({ data, type = "line" }) {
@@ -18,10 +19,11 @@ export default function Chart({ data, type = "line" }) {
     return (
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={data}>
-          <XAxis dataKey="name" stroke="#ccc" />
-          <YAxis stroke="#ccc" />
+          <CartesianGrid stroke="#1e293b" />
+          <XAxis dataKey="name" stroke="#94a3b8" />
+          <YAxis stroke="#94a3b8" />
           <Tooltip />
-          <Bar dataKey="value" fill="#38bdf8" />
+          <Bar dataKey="value" fill="#38bdf8" radius={[6, 6, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     );
@@ -30,14 +32,17 @@ export default function Chart({ data, type = "line" }) {
   return (
     <ResponsiveContainer width="100%" height={250}>
       <LineChart data={data}>
-        <XAxis dataKey="time" stroke="#ccc" />
-        <YAxis stroke="#ccc" />
+        <CartesianGrid stroke="#1e293b" />
+        <XAxis dataKey="time" stroke="#94a3b8" />
+        <YAxis stroke="#94a3b8" />
         <Tooltip />
         <Line
           type="monotone"
           dataKey="value"
           stroke="#38bdf8"
-          strokeWidth={2}
+          strokeWidth={3}
+          dot={false}
+          isAnimationActive={true}
         />
       </LineChart>
     </ResponsiveContainer>
