@@ -17,6 +17,7 @@ function Layout() {
         <Route path="/register" element={<Register />} />
         <Route path="/user-login" element={<UserLogin />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

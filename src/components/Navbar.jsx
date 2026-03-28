@@ -32,9 +32,7 @@ export default function Navbar() {
           User Login
         </NavLink>
 
-         <NavLink to="*" style={linkStyle}>
-          Not Found
-        </NavLink>
+        
       </div>
     </div>
   );
