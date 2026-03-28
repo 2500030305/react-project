@@ -3,20 +3,25 @@ import UserDashboard from "./user/UserDashboard";
 import UserLogin from "./pages/UserLogin";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
+import NotFound from "./NotFound"; 
 
 function Layout() {
   const location = useLocation();
+
   const hideNavbar = location.pathname === "/user-dashboard";
 
   return (
     <>
       {!hideNavbar && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Navigate to="/register" />} />
 
         <Route path="/register" element={<Register />} />
         <Route path="/user-login" element={<UserLogin />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+
+        {/* ✅ Catch all invalid routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
